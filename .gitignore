@@ -1,0 +1,14 @@
+# Secrets / local config
+.env
+
+# Dependencies
+node_modules/
+
+# Playwright output
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Auth state produced by tests/auth.setup.ts
+playwright/.auth/

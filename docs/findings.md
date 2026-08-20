@@ -1,7 +1,11 @@
-# Findings — Order to Invoicing
+# Additional observations
 
-Issues found while automating and exploring the order creation → invoicing
-workflow. Seven findings, plus what was verified as working.
+**Not part of the Part 2 submission.** The three findings submitted for Part 2 are
+in [findings-report.html](findings-report.html), with evidence attached.
+
+These are further observations noted while building the automation. They are kept
+here because they are real and reproducible, not because they compete with the
+three above — most sit outside the billing path the brief prioritises.
 
 **Environment:** `http://ec2-100-24-21-166.compute-1.amazonaws.com` · Chromium ·
 account `owner@truckbase.test` · August 2026

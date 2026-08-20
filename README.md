@@ -11,17 +11,13 @@ demonstrate breadth.
 | Document | Part |
 | --- | --- |
 | [Test approach](docs/test-approach.md) — risk list, ranking rationale, scenarios chosen and skipped | Part 1 |
-| [Findings](docs/findings.md) — issues found, with repro steps, impact, and evidence | Part 2 |
+| [Findings](docs/findings-report.html) — three findings with repro steps, impact, and screenshots | Part 2 |
 | [Release recommendation](docs/release-recommendation.html) — ship/hold call, conditions, what to test next | Part 4 |
 | [AI usage](docs/ai-usage.md) — tools used, what was changed or rejected | — |
+| [Additional observations](docs/findings.md) — further notes from the automation, outside the three submitted findings | — |
 
-[`docs/findings-report.html`](docs/findings-report.html) is a self-contained
-version of the findings with screenshots embedded, covering both the exploratory
-findings and those surfaced by the automation. Open it in a browser; it needs no
-build step and carries its own images.
-
-The release recommendation is HTML for the same reason. Markdown sources for both
-are kept alongside them.
+The findings and the release recommendation are self-contained HTML: they open in
+a browser with no build step, and the findings carry their own screenshots.
 
 ## Setup
 

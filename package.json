@@ -1,0 +1,23 @@
+{
+  "name": "truckbase-qa-takehome",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright + TypeScript automation for the order creation -> invoicing workflow.",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report",
+    "codegen": "playwright codegen $BASE_URL",
+    "typecheck": "tsc --noEmit",
+    "postinstall": "playwright install chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^24.0.0",
+    "dotenv": "^17.2.0",
+    "typescript": "^5.9.3"
+  }
+}

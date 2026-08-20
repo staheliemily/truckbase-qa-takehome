@@ -10,14 +10,15 @@ demonstrate breadth.
 
 | Document | Part |
 | --- | --- |
-| [Test approach](docs/test-approach.md) — risk list, ranking rationale, scenarios chosen and skipped | Part 1 |
+| [Test approach](docs/test-approach.html) — risk list, ranking rationale, scenarios chosen and skipped | Part 1 |
 | [Findings](docs/findings-report.html) — three findings with repro steps, impact, and screenshots | Part 2 |
 | [Release recommendation](docs/release-recommendation.html) — ship/hold call, conditions, what to test next | Part 4 |
 | [AI usage](docs/ai-usage.md) — tools used, what was changed or rejected | — |
 | [Additional observations](docs/findings.md) — further notes from the automation, outside the three submitted findings | — |
 
-The findings and the release recommendation are self-contained HTML: they open in
-a browser with no build step, and the findings carry their own screenshots.
+The test approach, findings, and release recommendation are self-contained HTML:
+they open in a browser with no build step, and the findings carry their own
+screenshots. Markdown sources are kept alongside each.
 
 ## Setup
 

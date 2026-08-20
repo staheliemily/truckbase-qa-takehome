@@ -2,6 +2,13 @@
 
 Playwright + TypeScript automation for the order creation → invoicing workflow. Lead QA take-home exercise.
 
+## Documentation
+
+- [Test approach](docs/test-approach.md) — risks, ranking, scenarios chosen and skipped, assumptions, open questions
+- [Findings](docs/findings.md) — issues found, with repro steps, impact, and evidence
+- [Release recommendation](docs/release-recommendation.md) — ship/hold call, conditions, what to test next, CI integration
+- [AI usage](docs/ai-usage.md) — tools used, what was changed or rejected, risks considered
+
 ## Setup
 
 Requires Node 20+.

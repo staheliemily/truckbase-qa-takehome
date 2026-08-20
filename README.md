@@ -16,6 +16,9 @@ measurements.
 
 ## Documentation
 
+**Start with [`docs/index.html`](docs/index.html)** — a cover page linking all
+five documents below.
+
 | Document | Part |
 | --- | --- |
 | [Test approach](docs/test-approach.html) — risk list, ranking rationale, scenarios chosen and skipped | Part 1 |
@@ -23,9 +26,6 @@ measurements.
 | [Release recommendation](docs/release-recommendation.html) — ship/hold call, conditions, what to test next | Part 4 |
 | [AI usage](docs/ai-usage.html) — tools used, what was changed or rejected | — |
 | [Additional observations](docs/additional-observations.html) — further notes from the automation, outside the three submitted findings | — |
-
-[`docs/index.html`](docs/index.html) is a cover page linking all five — open that
-one to read them in order.
 
 Every document is self-contained HTML: each opens in a browser with no build
 step, and the findings carry their own screenshots. Markdown sources are kept
@@ -79,10 +79,26 @@ npm run report
 ```
 
 It opens `playwright-report/`, with trace, screenshot, and video attached to any
-failure. Both are gitignored.
+failure. That directory and `test-results/` are both gitignored.
 
 Each test creates its own order, so a full run leaves two new orders in the
 environment. Nothing is deleted — there is no destructive teardown.
+
+## Project layout
+
+```
+tests/
+  order-creation.spec.ts    TC-01 — an order stores the rate it was given
+  order-to-invoice.spec.ts  TC-02 — that rate survives invoicing
+  auth.setup.ts             UI login, saved as storageState
+  pages/                    OrderForm, OrdersList, InvoicesView
+  helpers/                  order factory, data-grid reader, waits, money, consistency
+docs/                       the written deliverables, HTML with markdown sources
+.claude/skills/             codegen-to-suite — the rules the automation was written to
+```
+
+`.claude/skills/codegen-to-suite/` is committed deliberately: it is the ruleset
+the Playwright conversion followed, and the AI usage note refers to it.
 
 ## Scenario selection
 
@@ -106,7 +122,7 @@ invoicing. When TC-02 fails alone, order creation is not the cause.
 
 ## Risks covered
 
-Mapped to the numbered risks in [docs/test-approach.md](docs/test-approach.md).
+Mapped to the numbered risks in the [test approach](docs/test-approach.html).
 
 | Assertion | Risk |
 | --- | --- |

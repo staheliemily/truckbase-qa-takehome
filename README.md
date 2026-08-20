@@ -6,6 +6,14 @@ and the release call. The automated test covers a single scenario — the assign
 workflow end to end — chosen to protect the highest-ranked risk rather than to
 demonstrate breadth.
 
+**Time spent:** about 4 hours, against the brief's 2–3 hour guidance. A
+meaningful share of that was the environment rather than the work. The app took
+roughly 20 seconds to render any view and intermittently failed to render at
+all, so every verification cycle — create an order, invoice it, read the result
+back — ran three to five minutes, and several had to be repeated before a result
+could be trusted. That latency is documented as a finding in its own right, with
+measurements.
+
 ## Documentation
 
 | Document | Part |

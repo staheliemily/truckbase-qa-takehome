@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Order to Invoicing Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FCFCFB; --ink:#16191D; --soft:#5A636C;
+  --rule:#DDE0DC; --rule-2:#B8BEB7;
+  --crit:#9E2B20; --high:#B4661A; --med:#2B5578; --obs:#4A6B52;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,system-ui,sans-serif;
+  font-size:15.5px; line-height:1.6;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 26px 80px}
+
+.masthead{border-bottom:2.5px solid var(--ink);padding:48px 0 0}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--crit);margin:0 0 7px}
+h1{font-family:"Barlow Condensed",sans-serif;font-weight:700;text-transform:uppercase;
+  letter-spacing:.02em;font-size:clamp(42px,8vw,72px);line-height:.92;margin:0 0 6px;
+  text-wrap:balance}
+.subtitle{font-family:"Barlow Condensed",sans-serif;font-size:clamp(16px,2.4vw,21px);
+  text-transform:uppercase;letter-spacing:.07em;color:var(--soft);margin:0 0 26px}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--rule-2);border-left:1px solid var(--rule-2)}
+.meta div{border-right:1px solid var(--rule-2);border-bottom:1px solid var(--rule-2);padding:7px 11px 9px}
+.meta .lab{display:block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:2px}
+.meta .val{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.02em}
+.meta .val.hold{color:var(--crit)}
+@media(max-width:620px){.meta{grid-template-columns:repeat(2,1fr)}}
+
+.lede{margin:26px 0 0;max-width:68ch;color:var(--soft)}
+.lede strong{color:var(--ink)}
+
+h2{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--soft);margin:56px 0 0;font-weight:500}
+
+.docs{margin:14px 0 0;border-top:1px solid var(--rule-2)}
+.docs a{display:grid;grid-template-columns:74px 1fr auto;gap:0 20px;align-items:baseline;
+  border-bottom:1px solid var(--rule-2);padding:20px 4px 20px 0;
+  text-decoration:none;color:inherit;transition:background .12s ease,padding .12s ease}
+.docs a:hover,.docs a:focus-visible{background:rgba(22,25,29,.035);padding-left:10px;outline:none}
+.docs a:focus-visible{box-shadow:inset 3px 0 0 var(--crit)}
+.part{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--crit);padding-top:5px}
+.part.none{color:var(--rule-2)}
+.name{font-family:"Barlow Condensed",sans-serif;font-size:clamp(21px,3vw,27px);font-weight:600;
+  text-transform:uppercase;letter-spacing:.02em;line-height:1.1;margin:0}
+.desc{display:block;font-family:"IBM Plex Sans",sans-serif;font-size:14px;font-weight:400;
+  text-transform:none;letter-spacing:0;color:var(--soft);margin-top:5px;max-width:56ch;line-height:1.5}
+.tally{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--soft);white-space:nowrap;padding-top:7px}
+.tally.hold{color:var(--crit)}
+@media(max-width:620px){
+  .docs a{grid-template-columns:1fr;gap:6px}
+  .tally{padding-top:0}
+}
+
+.note{margin:44px 0 0;border-left:3px solid var(--rule-2);padding:2px 0 2px 17px;max-width:70ch}
+.note p{margin:0 0 10px}
+.note p:last-child{margin:0}
+code{font-family:"IBM Plex Mono",monospace;font-size:.87em;
+  background:rgba(22,25,29,.06);padding:1.5px 5px;border-radius:2px}
+
+footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.05em;
+  color:var(--soft);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media(prefers-reduced-motion:reduce){.docs a{transition:none}}
+@media print{ body{font-size:11pt} .docs a{page-break-inside:avoid} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">Truckbase &middot; Lead QA Engineer take-home</p>
+  <h1>Order to Invoicing</h1>
+  <p class="subtitle">Quality assessment &amp; release recommendation</p>
+  <div class="meta">
+    <div><span class="lab">Recommendation</span><span class="val hold">Hold</span></div>
+    <div><span class="lab">Findings</span><span class="val">3</span></div>
+    <div><span class="lab">Automated</span><span class="val">1 scenario</span></div>
+    <div><span class="lab">Time spent</span><span class="val">~4 hours</span></div>
+  </div>
+  <p class="lede">An assessment of the order creation to Truckbase invoicing workflow, ahead of release.
+  <strong>The money is right</strong> &mdash; an order&rsquo;s rate is preserved exactly through invoicing,
+  verified end to end. The recommendation is nonetheless to hold, on two critical defects: a negative rate
+  produces a billable invoice, and a created invoice cannot leave the system.</p>
+</header>
+
+<h2>Documents</h2>
+<nav class="docs">
+  <a href="test-approach.html">
+    <span class="part">Part 1</span>
+    <span class="name">Test Approach
+      <span class="desc">Ten risks ranked by consequence and detectability, the scenarios prioritised from
+      them, edge cases, and open questions for product.</span></span>
+    <span class="tally">10 risks</span>
+  </a>
+  <a href="findings-report.html">
+    <span class="part">Part 2</span>
+    <span class="name">Findings
+      <span class="desc">Three findings with reproduction steps, expected and actual behaviour, business
+      impact, and screenshots.</span></span>
+    <span class="tally">2 critical</span>
+  </a>
+  <a href="release-recommendation.html">
+    <span class="part">Part 4</span>
+    <span class="name">Release Recommendation
+      <span class="desc">The call and what would change it, testing priorities in order, the manual and
+      automated split, and CI/CD integration.</span></span>
+    <span class="tally hold">Hold</span>
+  </a>
+  <a href="ai-usage.html">
+    <span class="part none">Note</span>
+    <span class="name">AI Usage
+      <span class="desc">Which tools, what they were used for, and what was changed, rejected, or
+      independently validated.</span></span>
+    <span class="tally">4 uses</span>
+  </a>
+  <a href="additional-observations.html">
+    <span class="part none">Extra</span>
+    <span class="name">Additional Observations
+      <span class="desc">Further issues noted while building the automation, kept separate from the three
+      submitted findings.</span></span>
+    <span class="tally">7 notes</span>
+  </a>
+</nav>
+
+<div class="note">
+  <p><strong>Part 3, the automation</strong>, is the repository itself. The
+  <code>README.md</code> at its root covers setup, how to run the tests, why this scenario was chosen, which
+  risks each assertion covers, what would be automated next, and what would need to change before it runs in
+  CI.</p>
+  <p>Two Playwright test cases cover one scenario end to end: an order is created with a known rate, and that
+  rate survives invoicing. Both create their own data, so neither depends on the other having run.</p>
+</div>
+
+<footer>
+  <span>Order creation &rarr; Truckbase invoicing</span>
+  <span>Depth over breadth</span>
+</footer>
+
+</div>
+</body>
+</html>

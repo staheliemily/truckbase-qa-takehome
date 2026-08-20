@@ -24,9 +24,12 @@ measurements.
 | [AI usage](docs/ai-usage.html) — tools used, what was changed or rejected | — |
 | [Additional observations](docs/additional-observations.html) — further notes from the automation, outside the three submitted findings | — |
 
-Every document above is self-contained HTML: each opens in a browser with no
-build step, and the findings carry their own screenshots. Markdown sources are
-kept alongside them in `docs/`.
+[`docs/index.html`](docs/index.html) is a cover page linking all five — open that
+one to read them in order.
+
+Every document is self-contained HTML: each opens in a browser with no build
+step, and the findings carry their own screenshots. Markdown sources are kept
+alongside them in `docs/`.
 
 ## Setup
 

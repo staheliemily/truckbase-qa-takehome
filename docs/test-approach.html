@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Test Approach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FCFCFB; --ink:#16191D; --soft:#5A636C;
+  --rule:#DDE0DC; --rule-2:#B8BEB7;
+  --crit:#9E2B20; --high:#B4661A; --med:#2B5578; --obs:#4A6B52;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,system-ui,sans-serif;
+  font-size:15.5px; line-height:1.6;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 26px 80px}
+
+.masthead{border-bottom:2.5px solid var(--ink);padding:34px 0 0}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--crit);margin:0 0 7px}
+h1{font-family:"Barlow Condensed",sans-serif;font-weight:700;text-transform:uppercase;
+  letter-spacing:.02em;font-size:clamp(36px,6.5vw,58px);line-height:.94;margin:0 0 6px;
+  text-wrap:balance}
+.subtitle{font-family:"Barlow Condensed",sans-serif;font-size:clamp(16px,2.4vw,21px);
+  text-transform:uppercase;letter-spacing:.07em;color:var(--soft);margin:0 0 22px}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--rule-2);border-left:1px solid var(--rule-2)}
+.meta div{border-right:1px solid var(--rule-2);border-bottom:1px solid var(--rule-2);padding:7px 11px 9px}
+.meta .lab{display:block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:2px}
+.meta .val{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.02em}
+@media(max-width:620px){.meta{grid-template-columns:repeat(2,1fr)}}
+
+.stamp{margin:24px 0 0;font-family:"IBM Plex Mono",monospace;font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--crit)}
+
+section{margin-top:56px}
+h2{font-family:"Barlow Condensed",sans-serif;font-weight:700;
+  font-size:clamp(23px,3.6vw,31px);text-transform:uppercase;letter-spacing:.02em;
+  margin:0 0 18px;border-bottom:1.5px solid var(--ink);padding-bottom:8px;text-wrap:balance}
+h3{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--soft);margin:30px 0 10px;font-weight:500}
+p{margin:0 0 12px;max-width:70ch}
+strong{font-weight:600}
+em{font-style:italic}
+code{font-family:"IBM Plex Mono",monospace;font-size:.87em;
+  background:rgba(22,25,29,.06);padding:1.5px 5px;border-radius:2px}
+
+table.risks{width:100%;border-collapse:collapse;font-size:14.5px;margin:0}
+table.risks th{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--soft);text-align:left;
+  border-bottom:1.5px solid var(--ink);padding:0 12px 6px 0;vertical-align:bottom}
+table.risks td{border-bottom:1px solid var(--rule);padding:11px 12px 11px 0;vertical-align:top}
+table.risks td:first-child{font-family:"IBM Plex Mono",monospace;font-size:12px;
+  width:34px;padding-right:8px;font-variant-numeric:tabular-nums;color:var(--soft)}
+table.risks tr.covered td:first-child{color:var(--crit);font-weight:500}
+table.risks td.risk{width:31%;font-weight:600}
+table.risks tr.covered td.risk::after{content:"Prioritized";display:block;
+  font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--crit);font-weight:400;margin-top:3px}
+@media(max-width:640px){
+  table.risks td.risk{width:auto}
+  table.risks,table.risks tbody,table.risks tr,table.risks td{display:block;width:100%}
+  table.risks thead{display:none}
+  table.risks tr{border-bottom:1px solid var(--rule-2);padding:12px 0}
+  table.risks td{border:none;padding:2px 0}
+}
+
+ul.plain{list-style:none;padding:0;margin:0;max-width:74ch}
+ul.plain li{border-bottom:1px solid var(--rule);padding:13px 0 13px 24px;position:relative}
+ul.plain li:last-child{border-bottom:none}
+ul.plain li::before{content:"";position:absolute;left:0;top:21px;
+  width:11px;height:1.5px;background:var(--rule-2)}
+
+ul.cases{list-style:none;padding:0;margin:0;max-width:76ch}
+ul.cases li{border-bottom:1px solid var(--rule);padding:13px 0;display:grid;
+  grid-template-columns:104px 1fr;gap:0 16px;align-items:start}
+ul.cases li:last-child{border-bottom:none}
+.state{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.13em;
+  text-transform:uppercase;padding:3px 7px;color:#fff;justify-self:start;margin-top:3px}
+.state.done{background:var(--obs)}
+.state.not{background:var(--rule-2);color:var(--ink)}
+.state.skip{background:var(--med)}
+@media(max-width:560px){ul.cases li{grid-template-columns:1fr;gap:6px}}
+
+ol.questions{list-style:none;counter-reset:q;padding:0;margin:0;max-width:74ch}
+ol.questions li{counter-increment:q;border-bottom:1px solid var(--rule);
+  padding:15px 0 15px 42px;position:relative}
+ol.questions li:last-child{border-bottom:none}
+ol.questions li::before{content:counter(q,decimal-leading-zero);position:absolute;left:0;top:15px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.1em;
+  color:var(--crit);font-variant-numeric:tabular-nums}
+
+footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.05em;
+  color:var(--soft);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media print{ body{font-size:11pt} section{page-break-inside:avoid} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">Truckbase &middot; order creation &rarr; invoicing</p>
+  <h1>Test Approach</h1>
+  <p class="subtitle">Lead QA Engineer take-home &middot; Part 1</p>
+  <div class="meta">
+    <div><span class="lab">Risks identified</span><span class="val">10</span></div>
+    <div><span class="lab">Prioritized</span><span class="val">Risks 1&ndash;5</span></div>
+    <div><span class="lab">Scope</span><span class="val">Order &rarr; Invoice</span></div>
+    <div><span class="lab">Ranked by</span><span class="val">Consequence</span></div>
+  </div>
+  <p class="stamp">Written before exploring the application</p>
+</header>
+
+<section>
+  <h2>Risk list</h2>
+  <table class="risks">
+    <thead><tr><th></th><th>Risk</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr class="covered"><td>01</td><td class="risk">Wrong amount billed</td>
+        <td>The flat rate doesn&rsquo;t survive the trip from order to invoice. Customer pays the wrong price;
+        caught at reconciliation, if ever.</td></tr>
+      <tr class="covered"><td>02</td><td class="risk">Duplicate invoice</td>
+        <td>Double-click, retry, or two tabs creates two invoices for one load. Customer billed twice, messy
+        to unwind once money has moved.</td></tr>
+      <tr class="covered"><td>03</td><td class="risk">Invoice exists but the order doesn&rsquo;t know it</td>
+        <td>Invoice created, order status never updates. Load looks unbilled and gets billed again.</td></tr>
+      <tr class="covered"><td>04</td><td class="risk">Order and invoice quietly diverge</td>
+        <td>Rate, customer, or stops editable after invoicing with nothing reconciling the two. Records stop
+        matching and nobody is told.</td></tr>
+      <tr class="covered"><td>05</td><td class="risk">Views disagree</td>
+        <td>Order shows one status or rate in the overlay, another in the orders list or invoices view.
+        Whoever&rsquo;s chasing payment can&rsquo;t tell what&rsquo;s true.</td></tr>
+      <tr><td>06</td><td class="risk">Can&rsquo;t bill at all</td>
+        <td>Order or customer fails to save correctly, so nothing invoiceable exists. Revenue delayed &mdash;
+        ranked here rather than higher because it&rsquo;s loud and gets caught fast.</td></tr>
+      <tr><td>07</td><td class="risk">Incomplete order can be invoiced</td>
+        <td>Missing customer, zero rate, or a single stop still produces an invoice. A $0.00 invoice reaching
+        a customer is a real incident.</td></tr>
+      <tr><td>08</td><td class="risk">Preview doesn&rsquo;t match what&rsquo;s saved</td>
+        <td>You approve one thing, the customer receives another.</td></tr>
+      <tr><td>09</td><td class="risk">Order data saves wrong</td>
+        <td>Second stop missing, stops out of order, delivery dated before pickup. The invoice then bills for
+        a load that isn&rsquo;t what was arranged.</td></tr>
+      <tr><td>10</td><td class="risk">Order doesn&rsquo;t appear in the list</td>
+        <td>Requires a hard refresh to show up. Low money impact, but high nuisance for dispatchers.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Ranking rationale</h2>
+  <p>Ranked by consequence and detectability rather than likelihood, since this was written before exploring
+  the app. Money impact comes first; among equal-impact risks, the quieter failure ranks higher, because in
+  billing the error nobody catches is the expensive one. This is why &ldquo;can&rsquo;t bill at all&rdquo;
+  sits mid-list despite sounding severe &mdash; it is the loudest possible failure and would be caught within
+  a day.</p>
+
+  <h3>Scenarios prioritized, and why</h3>
+  <p>Risks 1&ndash;5. They cover the money path and the cross-view consistency the brief points at twice.
+  Risks 6&ndash;10 receive incidental coverage while walking the happy path.</p>
+</section>
+
+<section>
+  <h2>Edge cases considered</h2>
+
+  <h3>Rate values</h3>
+  <p>Because risk 1 is the top risk, and the rate is the value that has to survive the whole path.</p>
+  <ul class="cases">
+    <li><span class="state done">Exercised</span><div><strong>Negative rate.</strong> Accepted with no
+      validation and produces a billable invoice &mdash; finding 1.</div></li>
+    <li><span class="state not">Not run</span><div><strong>Zero rate.</strong> Same code path as negative and
+      the same class of incident if it reaches a customer; the next test I would write covers both.</div></li>
+    <li><span class="state not">Not run</span><div><strong>More than two decimal places, and
+      rounding.</strong> Worth knowing whether the invoice rounds, truncates, or stores the extra precision,
+      because a half-cent difference reconciles badly at volume.</div></li>
+    <li><span class="state not">Not run</span><div><strong>Very large rate.</strong> Formatting and precision
+      limits.</div></li>
+  </ul>
+
+  <h3>Identifiers and duplication</h3>
+  <ul class="cases">
+    <li><span class="state done">Exercised</span><div><strong>Customer order # format.</strong> Incidentally.
+      It accepts long numeric references; whether it accepts letters, punctuation, or has a length cap is
+      unconfirmed, and the automation had to work around not knowing.</div></li>
+    <li><span class="state not">Not run</span><div><strong>Two invoices for one order.</strong> Asserted as a
+      count, so a duplicate that exists would be caught. Not provoked &mdash; double-click, retry, and two
+      tabs are the real mechanisms and none were attempted.</div></li>
+  </ul>
+
+  <h3>Order shape and dates</h3>
+  <ul class="cases">
+    <li><span class="state not">Not run</span><div><strong>Delivery dated before pickup.</strong> Risk 9; the
+      invoice would then bill for a load that could not have run.</div></li>
+    <li><span class="state not">Not run</span><div><strong>Stops in the wrong order, or a missing second
+      stop.</strong> Not exercised beyond the happy path.</div></li>
+    <li><span class="state skip">Excluded</span><div><strong>Month boundary in the date picker.</strong>
+      Deliberately &mdash; the picker offers no month navigation that automation could reach, so a run in the
+      last days of a month fails with a stated reason rather than silently picking the wrong month.</div></li>
+  </ul>
+
+  <h3>Invoice completion</h3>
+  <ul class="cases">
+    <li><span class="state done">Exercised</span><div><strong>Required fields on the invoice dialog.</strong>
+      The Service line is required, nothing marks it required, and Save is enabled without it &mdash; see the
+      questions below.</div></li>
+    <li><span class="state not">Not run</span><div><strong>Invoicing an order twice.</strong></div></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Not tested, and why</h2>
+  <h3>Out of scope per the brief</h3>
+  <p>Trips and dispatch, driver pay and settlements, QuickBooks sync, quote conversion, EDI, payment gateways,
+  performance.</p>
+  <h3>Skipped for time</h3>
+  <p>Given the 2&ndash;3 hour budget and the instruction to favor depth over breadth: cross-browser coverage,
+  a full accessibility audit, and deep field validation off the critical path.</p>
+</section>
+
+<section>
+  <h2>Assumptions</h2>
+  <ul class="plain">
+    <li>A flat rate means no line-item breakdown</li>
+    <li>The invoice flow ends at sent rather than paid</li>
+    <li>Seeded customers have valid billing configuration</li>
+    <li>Single currency</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Questions for product and engineering</h2>
+  <p>Raised by what exploration actually turned up, in the order I would ask them.</p>
+  <ol class="questions">
+    <li><strong>Should a negative or zero rate be rejected, and at which layer?</strong> Today neither the
+    form nor the API stops it. If the fix is form-only, the API still accepts it and any other client can
+    still produce a negative invoice.</li>
+    <li><strong>Is the Service line on the invoice dialog required?</strong> It behaves as required, but is
+    not marked required, and Save is enabled without it and silently does nothing when clicked. If it is
+    required, the validation is missing; if it is not, something else is failing silently.</li>
+    <li><strong>What are the intended invoice status values and transitions?</strong> The orders list shows
+    <code>Invoice Created</code> while the invoices list shows <code>Created</code> for the same invoice. Both
+    are reasonable in isolation; whether they are meant to be the same vocabulary is a product question, and
+    it matters for risk 5.</li>
+    <li><strong>How often does a dispatcher backdate an order?</strong> Pickup and delivery dates were only
+    exercised in the future here. If backdating is routine &mdash; a load entered after it ran, which is
+    common in freight &mdash; then date validation means something different: rejecting a pickup date in the
+    past would break a normal workflow, while accepting a delivery dated before its pickup lets an invoice
+    bill for a load that could not have run (risk 9). The answer decides which of those two is the defect, and
+    it is not something testing alone can settle.</li>
+    <li><strong>Is the third-party iframe on the invoice view intentional?</strong> The invoice view loads
+    <code>voice.cohere.so</code>. On a screen showing customer billing data that should be a deliberate
+    decision.</li>
+    <li><strong>Is the observed latency a dev-build artifact?</strong> Roughly 20 seconds to first interactive
+    paint, with intermittent failures to render at all. If this is the environment rather than the product,
+    the release risk is very different &mdash; and the test suite&rsquo;s timeouts should be retuned before it
+    runs anywhere else.</li>
+    <li><strong>Are stable test hooks planned?</strong> The rate field, status chips, and the invoice Create
+    button are reachable today only through generated class names and positional selectors. A
+    <code>data-testid</code> on each would remove the most brittle parts of any automation written against
+    this workflow.</li>
+  </ol>
+</section>
+
+<footer>
+  <span>Part 1 &middot; Test approach</span>
+  <span>Depth over breadth</span>
+</footer>
+
+</div>
+</body>
+</html>

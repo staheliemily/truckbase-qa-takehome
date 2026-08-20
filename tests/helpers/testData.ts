@@ -47,3 +47,30 @@ export const RUN_ID = `${ID_PREFIX}${timestamp()}-w${process.env.TEST_WORKER_IND
 export function isTestGenerated(value: string | null | undefined): boolean {
   return typeof value === 'string' && value.trim().startsWith(ID_PREFIX);
 }
+
+/**
+ * The reference typed into the order form's "Customer order #" field, which is
+ * how a run finds the order it created and how a human tells automation's
+ * orders apart from real ones.
+ *
+ * Caveat worth resolving before leaning on this: the codegen recording put the
+ * digits `4243` in that field, so it is not yet known whether the field accepts
+ * letters and hyphens at all. If it turns out to be numeric-only, use
+ * `numericOrderReference()` instead - same uniqueness, no prefix.
+ */
+export function orderReference(): string {
+  return uniqueId('order');
+}
+
+/**
+ * A digits-only fallback for a "Customer order #" field that rejects text.
+ *
+ * `MMDDHHmmss` plus the worker index and a counter: unique within a run and
+ * still sortable, but it loses the `EM-` marker, so records created this way
+ * are not identifiable as test data by prefix alone.
+ */
+export function numericOrderReference(): string {
+  sequence += 1;
+  const worker = process.env.TEST_WORKER_INDEX ?? '0';
+  return `${timestamp().replace(/[^0-9]/g, '').slice(4)}${worker}${sequence}`;
+}

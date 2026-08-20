@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Release Recommendation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FCFCFB; --ink:#16191D; --soft:#5A636C;
+  --rule:#DDE0DC; --rule-2:#B8BEB7;
+  --crit:#9E2B20; --high:#B4661A; --med:#2B5578; --obs:#4A6B52;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,system-ui,sans-serif;
+  font-size:15.5px; line-height:1.6;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 26px 80px}
+
+.masthead{border-bottom:2.5px solid var(--ink);padding:34px 0 0}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--crit);margin:0 0 7px}
+h1{font-family:"Barlow Condensed",sans-serif;font-weight:700;text-transform:uppercase;
+  letter-spacing:.02em;font-size:clamp(36px,6.5vw,58px);line-height:.94;margin:0 0 6px;
+  text-wrap:balance}
+.subtitle{font-family:"Barlow Condensed",sans-serif;font-size:clamp(16px,2.4vw,21px);
+  text-transform:uppercase;letter-spacing:.07em;color:var(--soft);margin:0 0 22px}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--rule-2);border-left:1px solid var(--rule-2)}
+.meta div{border-right:1px solid var(--rule-2);border-bottom:1px solid var(--rule-2);padding:7px 11px 9px}
+.meta .lab{display:block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:2px}
+.meta .val{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.02em}
+.meta .val.hold{color:var(--crit)}
+@media(max-width:620px){.meta{grid-template-columns:repeat(2,1fr)}}
+
+.verdict{margin:38px 0 0;border-left:5px solid var(--crit);padding:4px 0 4px 20px}
+.verdict .call{font-family:"Barlow Condensed",sans-serif;font-weight:700;
+  text-transform:uppercase;letter-spacing:.02em;font-size:clamp(30px,5.5vw,46px);
+  line-height:1;margin:0 0 12px;color:var(--crit)}
+.verdict p{margin:0 0 12px;max-width:68ch}
+.verdict p:last-child{margin-bottom:0}
+
+section{margin-top:56px}
+h2{font-family:"Barlow Condensed",sans-serif;font-weight:700;
+  font-size:clamp(23px,3.6vw,31px);text-transform:uppercase;letter-spacing:.02em;
+  margin:0 0 18px;border-bottom:1.5px solid var(--ink);padding-bottom:8px;
+  text-wrap:balance}
+h3{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--soft);margin:26px 0 10px;font-weight:500}
+p{margin:0 0 12px;max-width:70ch}
+strong{font-weight:600}
+code{font-family:"IBM Plex Mono",monospace;font-size:.87em;
+  background:rgba(22,25,29,.06);padding:1.5px 5px;border-radius:2px}
+
+ul.conditions{list-style:none;padding:0;margin:0;max-width:74ch}
+ul.conditions li{border-bottom:1px solid var(--rule);padding:13px 0 13px 24px;position:relative}
+ul.conditions li:last-child{border-bottom:none}
+ul.conditions li::before{content:"";position:absolute;left:0;top:21px;
+  width:11px;height:1.5px;background:var(--rule-2)}
+ul.conditions.must li::before{background:var(--crit)}
+ul.conditions.accepted li::before{background:var(--obs)}
+
+ol.priority{list-style:none;counter-reset:p;padding:0;margin:0;max-width:74ch}
+ol.priority li{counter-increment:p;border-bottom:1px solid var(--rule);
+  padding:15px 0 15px 42px;position:relative}
+ol.priority li:last-child{border-bottom:none}
+ol.priority li::before{content:counter(p,decimal-leading-zero);position:absolute;left:0;top:15px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.1em;
+  color:var(--crit);font-variant-numeric:tabular-nums}
+
+.split{display:grid;gap:0;border-top:1px solid var(--rule-2)}
+.split > div{border-bottom:1px solid var(--rule-2);padding:16px 0}
+.split h4{font-family:"Barlow Condensed",sans-serif;font-size:19px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.03em;margin:0 0 6px}
+.split h4 .tag{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.13em;
+  padding:3px 8px;color:#fff;margin-right:10px;vertical-align:2px}
+.tag.auto{background:var(--obs)} .tag.man{background:var(--med)} .tag.never{background:var(--crit)}
+.split p:last-child{margin-bottom:0}
+
+dl.ci{margin:0;max-width:74ch}
+dl.ci dt{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--soft);margin-top:20px}
+dl.ci dt:first-child{margin-top:0}
+dl.ci dd{margin:6px 0 0}
+
+footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.05em;
+  color:var(--soft);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media print{ body{font-size:11pt} section{page-break-inside:avoid} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">Truckbase &middot; order creation &rarr; invoicing</p>
+  <h1>Release Recommendation</h1>
+  <p class="subtitle">Lead QA Engineer take-home &middot; Part 4</p>
+  <div class="meta">
+    <div><span class="lab">Recommendation</span><span class="val hold">Hold</span></div>
+    <div><span class="lab">Blockers</span><span class="val">2 Critical</span></div>
+    <div><span class="lab">Scope</span><span class="val">Order &rarr; Invoice</span></div>
+    <div><span class="lab">Coverage</span><span class="val">1 scenario, 2 tests</span></div>
+  </div>
+</header>
+
+<div class="verdict">
+  <p class="call">Do not ship</p>
+  <p>Two defects independently justify it. An order accepts a negative linehaul rate and produces a billable
+  invoice for a negative amount, with no validation at any step. And a created invoice cannot be viewed,
+  downloaded, or sent &mdash; the document the workflow exists to produce cannot leave the system.</p>
+  <p>Either alone would block a release. The first bills customers wrong and does it silently. The second
+  means the billing workflow does not complete at all.</p>
+</div>
+
+<section>
+  <h2>Conditions and risks</h2>
+  <p>The recommendation flips to <strong>ship with conditions</strong> when both critical defects are fixed
+  and covered by regression tests, and when the following hold.</p>
+
+  <h3>Must be true</h3>
+  <ul class="conditions must">
+    <li><strong>Rate validation is enforced server-side, not only in the form.</strong> A fix that only
+    disables the submit button leaves the API accepting negative rates. The regression test should assert the
+    rejection, not the disabled control.</li>
+    <li><strong>Invoice delivery is verified end to end</strong>, including the PDF actually rendering in the
+    viewer, not just the viewer opening. That distinction cost time during this exercise and is easy to get
+    wrong again.</li>
+    <li><strong>The silent-save defect in the invoice dialog is fixed or documented.</strong> Service is
+    required, Save is enabled without it, and clicking Save does nothing and says nothing. It does not block
+    release on its own, but it will generate support load from users who cannot tell what is wrong.</li>
+  </ul>
+
+  <h3>Accepted knowingly</h3>
+  <ul class="conditions accepted">
+    <li><strong>The accessibility defect in the sidebar ships.</strong> Every navigation item is an unlabelled
+    icon, which fails WCAG 2.1 &sect;4.1.2. A real defect and a compliance exposure, but not in the billing
+    path, and the fix is independent. Schedule it rather than gating on it.</li>
+    <li><strong>Coverage is narrow.</strong> One scenario, one browser, one customer, one flat rate. The risks
+    listed as uncovered in the test approach stay uncovered.</li>
+    <li><strong>Environment behaviour is unverified against a production build.</strong> The observed latency
+    and intermittent render failures may not be product behaviour at all.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Additional testing I&rsquo;d prioritize</h2>
+  <p>In order, with the reasoning for the order.</p>
+  <ol class="priority">
+    <li><strong>Negative and zero rates.</strong> Closes the highest-severity open defect and risk 7
+    (incomplete order can be invoiced). A $0.00 or negative invoice reaching a customer is an incident, not a
+    bug report.</li>
+    <li><strong>Invoice delivery &mdash; view, download, send.</strong> The second critical defect. Worth
+    asserting at the API level as well as the UI, so a future failure identifies which layer broke.</li>
+    <li><strong>Editing an order after it has been invoiced.</strong> Risk 4, entirely uncovered. If the rate
+    is editable post-invoice with nothing reconciling the two, records diverge silently &mdash; the same class
+    of failure as risk 1 and just as quiet.</li>
+    <li><strong>Duplicate submission under real conditions.</strong> Risk 2 is asserted as a count today,
+    which catches a duplicate that already exists. It does not attempt to <em>cause</em> one. Double-click,
+    retry, and two-tab submission are the actual mechanisms.</li>
+    <li><strong>Invoice preview against saved data.</strong> Risk 8. Cheap once delivery works, and it
+    protects the moment where a human approves one thing and the customer receives another.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Manual vs automated split</h2>
+  <div class="split">
+    <div>
+      <h4><span class="tag auto">Automated</span></h4>
+      <p>Anything with an exact expected value that will be checked repeatedly: the rate surviving order
+      &rarr; invoice, invoice counts, status propagation, cross-view consistency, and the two regression tests
+      above. These are assertions a machine makes better than a person, and their value compounds because they
+      run on every change.</p>
+    </div>
+    <div>
+      <h4><span class="tag man">Manual</span></h4>
+      <p>Judgement about whether the workflow makes sense. The silent Save is a good example: automation
+      confirmed the click does nothing, but noticing that a user is stranded with no feedback is an
+      exploratory finding. Also manual: the PDF&rsquo;s visual correctness, one-off environment checks, and
+      the first pass over any new flow, which is where the interesting defects surface before anyone knows
+      what to assert.</p>
+    </div>
+    <div>
+      <h4><span class="tag never">Not automated</span></h4>
+      <p>Invoice sending, deliberately. The suite asserts the dialog&rsquo;s send flag is off before saving,
+      so no test can email a real customer. Delivery should be verified against a mail sink, not by
+      sending.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>CI/CD integration</h2>
+  <dl class="ci">
+    <dt>Where</dt>
+    <dd>A dedicated test environment, never production. This suite creates real orders and real invoices; it
+    must be configuration-impossible to point it at production.</dd>
+
+    <dt>Trigger</dt>
+    <dd>On pull requests touching the order or invoicing paths, and nightly against the shared test
+    environment. The suite is too slow for every commit.</dd>
+
+    <dt>Duration</dt>
+    <dd>Roughly five minutes for two test cases against the current environment, dominated by the
+    application&rsquo;s ~20s first paint rather than by the tests. Against a production build it should be
+    substantially faster; the current timeouts would need lowering to match, or they will hide a real
+    regression in load time.</dd>
+
+    <dt>What a failure blocks</dt>
+    <dd>A failure in the rate assertions blocks the merge &mdash; that is the money path. A failure in the
+    reliability-sensitive setup should be triaged rather than auto-retried into green. The environment already
+    produces intermittent login failures, and papering over them with retries is how a team learns to ignore
+    its own suite.</dd>
+
+    <dt>Artifacts</dt>
+    <dd>Trace, screenshot, and video on failure, uploaded by the pipeline. Traces record values passed to
+    <code>fill()</code>, including the password &mdash; restrict who can download them.</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>Process and product changes for testability</h2>
+  <ul class="conditions">
+    <li><strong>Stable test hooks.</strong> The rate field, the invoice status chips, and the invoice
+    dialog&rsquo;s Create button are reached today through generated class names, positional indexes, and text
+    matching. A <code>data-testid</code> on each removes the most brittle selectors in the suite. The truck
+    and trailer autocompletes are the worst of them and the highest-value place to start.</li>
+    <li><strong>Accessible names on navigation.</strong> Fixing the sidebar defect also makes the navigation
+    addressable by role and name, which is the most durable locator strategy available. The accessibility fix
+    and the testability fix are the same change.</li>
+    <li><strong>Seedable, isolated test data.</strong> The suite creates its own orders with timestamped
+    references and deletes nothing, which is correct against a shared environment but leaves clutter. An API
+    to seed and tear down a known fixture set would make runs cheaper and let tests assert against known state
+    instead of whatever exists.</li>
+    <li><strong>A visible validation contract.</strong> The invoice dialog&rsquo;s silent Save is the symptom;
+    the underlying gap is that required fields are not marked required and failures are not surfaced.
+    Consistent inline validation would remove a class of defect and make it assertable.</li>
+    <li><strong>Observability into invoice generation.</strong> The delivery defect could not be localized
+    from the UI &mdash; it is not possible to tell whether the PDF fails to generate or fails to serve. A
+    logged, queryable generation step would turn a vague &ldquo;download doesn&rsquo;t work&rdquo; into a
+    specific failure.</li>
+  </ul>
+</section>
+
+<footer>
+  <span>Part 4 &middot; Release recommendation</span>
+  <span>Recommendation: hold</span>
+</footer>
+
+</div>
+</body>
+</html>

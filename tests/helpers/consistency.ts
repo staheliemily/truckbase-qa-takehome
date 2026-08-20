@@ -26,6 +26,12 @@ export interface ConsistencyOptions {
   fields?: readonly string[];
   /** Label for the record under test, included in the failure message. */
   recordLabel?: string;
+  /**
+   * Treat a field that is blank in every view as consistent rather than as a
+   * failure. Off by default: agreement between two empty cells is the shape a
+   * value that never propagated takes, not evidence that anything is right.
+   */
+  allowAllMissing?: boolean;
 }
 
 /** One field on which the views did not agree. */
@@ -107,7 +113,9 @@ export function findDiscrepancies(
       byNormalized.set(normalized, group);
     }
 
-    if (byNormalized.size > 1) {
+    const allMissing = byNormalized.size === 1 && byNormalized.has(MISSING);
+
+    if (byNormalized.size > 1 || (allMissing && !options.allowAllMissing)) {
       discrepancies.push({
         field,
         groups: [...byNormalized].map(([normalized, group]) => ({
@@ -167,6 +175,13 @@ export function formatDiscrepancies(
       lone && lone.views.length === 1 && majority.views.length > 1 ? lone.views[0] : undefined;
 
     lines.push('');
+    if (groups.length === 1 && majority.normalized === MISSING) {
+      lines.push(
+        `  "${field}": blank in all ${majority.views.length} view(s). Two empty ` +
+          'cells agreeing is not consistency - the value never made it through.',
+      );
+      continue;
+    }
     lines.push(
       singleOutlier
         ? `  "${field}": ${singleOutlier} disagreed with the other ${majority.views.length} view(s).`

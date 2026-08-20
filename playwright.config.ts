@@ -43,12 +43,20 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
 
-    actionTimeout: 15_000,
-    navigationTimeout: 30_000,
+    // This app is slow to paint. A cold sign-in page returns 200 in about 5s
+    // and then takes another ~15s to render its form, and the sidebar behaves
+    // the same way after each navigation. Measured against the EC2 test
+    // environment; these are sized for it, not chosen defensively.
+    actionTimeout: 45_000,
+    navigationTimeout: 60_000,
   },
 
+  // A single order-to-invoice pass navigates six or seven times, and each
+  // navigation costs a first paint.
+  timeout: 300_000,
+
   expect: {
-    timeout: 10_000,
+    timeout: 30_000,
   },
 
   projects: [

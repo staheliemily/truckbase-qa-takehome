@@ -8,8 +8,8 @@ and the actual testing my own.
 |------|--------------------|----------------------------------------|
 | Claude (chat) | Structuring the risk list and pressure-testing my ranking | Reordered several risks and rewrote the entries in my own words. Rejected the suggestion to score risks numerically — a 1–5 matrix on a 2-hour exercise is process theater, not judgment. |
 | Claude (chat) | Background research on TMS and freight-billing failure modes before starting | Treated as hypotheses, not findings. Discarded the accessorial and fuel-surcharge material as irrelevant once I noted the brief specifies a flat rate, which removes calculation from scope. |
-| Claude Code | Scaffolding the Playwright project and doc structure | <!-- TODO: what you adjusted --> |
-| Claude Code | <!-- TODO --> | <!-- TODO --> |
+| Claude Code | Scaffolding the Playwright project and doc structure | Kept the config, the env wiring, and the cross-view consistency helper. Replaced the auth setup entirely — it was a stub with guessed selectors, and every one was wrong against the real app. Found a bug in the consistency helper while wiring it up: two blank views normalised to the same sentinel and compared as *consistent*, so a value that never propagated would have passed. |
+| Claude Code | Converting a `playwright codegen` recording into page objects, helpers, and two specs, following rules I wrote up as a reusable skill (`.claude/skills/codegen-to-suite/`) | Validated every selector against the running app rather than trusting the recording. Rejected its implied click order for invoicing — the charge type has to be set *inside* the dialog before saving, not after, so following the recording produced a test that never created an invoice. Caught an AI-authored regex bug (`\s` inside a template literal collapses to a literal `s`) that silently broke every grid lookup. |
 
 ## Risks I considered
 

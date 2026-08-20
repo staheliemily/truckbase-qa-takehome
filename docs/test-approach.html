@@ -244,10 +244,6 @@ footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
     <li><strong>Should a negative or zero rate be rejected, and at which layer?</strong> Today neither the
     form nor the API stops it. If the fix is form-only, the API still accepts it and any other client can
     still produce a negative invoice.</li>
-    <li><strong>Is the invoice document expected to be viewable and downloadable in this build?</strong>
-    Creating an invoice succeeds, but it cannot be viewed, downloaded, or sent. If delivery is not in scope
-    for this release, that changes the release call significantly &mdash; and should be stated rather than
-    inferred.</li>
     <li><strong>Is the Service line on the invoice dialog required?</strong> It behaves as required, but is
     not marked required, and Save is enabled without it and silently does nothing when clicked. If it is
     required, the validation is missing; if it is not, something else is failing silently.</li>

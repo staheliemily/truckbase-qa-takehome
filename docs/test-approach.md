@@ -94,21 +94,18 @@ Raised by what exploration actually turned up, in the order I would ask them:
    required, but is not marked required, and Save is enabled without it and
    silently does nothing when clicked. If it is required, the validation is
    missing; if it is not, something else is failing silently.
-4. **Is a third stop required to create an order?** The workflow specifies two.
-   Order creation did not appear to complete with two during exploration, which
-   would contradict the brief — I could not confirm which is intended.
-5. **What are the intended invoice status values and transitions?** The orders
+4. **What are the intended invoice status values and transitions?** The orders
    list shows `Invoice Created` while the invoices list shows `Created` for the
    same invoice. Both are reasonable in isolation; whether they are meant to be
    the same vocabulary is a product question, and it matters for risk 5.
-6. **Is the third-party iframe on the invoice view intentional?** The invoice
+5. **Is the third-party iframe on the invoice view intentional?** The invoice
    view loads `voice.cohere.so`. On a screen showing customer billing data that
    should be a deliberate decision.
-7. **Is the observed latency a dev-build artifact?** Roughly 20 seconds to first
+6. **Is the observed latency a dev-build artifact?** Roughly 20 seconds to first
    interactive paint, with intermittent failures to render at all. If this is the
    environment rather than the product, the release risk is very different — and
    the test suite's timeouts should be retuned before it runs anywhere else.
-8. **Are stable test hooks planned?** The rate field, status chips, and the
+7. **Are stable test hooks planned?** The rate field, status chips, and the
    invoice Create button are reachable today only through generated class names
    and positional selectors. A `data-testid` on each would remove the most
    brittle parts of any automation written against this workflow.

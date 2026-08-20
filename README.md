@@ -172,3 +172,33 @@ creation and every assertion listed above.
 Not verified: invoice download and invoice send, both of which fail for the
 reasons recorded in the findings. Coverage for the download is written but
 deliberately not wired into any test while the defect is open.
+
+## Where this stopped, and what I'd do next
+
+Written to the brief's 2–3 hour box, favouring depth over breadth. What that
+bought: a risk-based approach, three findings including two criticals, one
+automated scenario running green end to end, and a release call.
+
+What it left, in the order I'd pick it up:
+
+1. **Evidence for finding 3.** It has a clear reproduction and impact but no
+   screenshot, where the other two carry five and three. The contrast is the
+   finding — rate locked via the list Edit, editable via the overlay — so it
+   needs a pair of images, not one.
+2. **The remaining rate edge cases.** Zero, more than two decimal places, and
+   very large values all sit on the same path as the negative-rate defect, and
+   none were exercised. That is the next exploration and the next test.
+3. **Date ordering.** Delivery dated before pickup (risk 9) is untested, and the
+   backdating question in the test approach is unanswered — so what "correct"
+   looks like here is not yet settled.
+4. **Invoice delivery.** Blocked by finding 2. The download coverage is written
+   and deliberately not wired in; it goes back in the moment the defect is fixed.
+5. **Provoking a duplicate.** Risk 2 is asserted as a count, which catches a
+   duplicate that already exists but never attempts to cause one. Double-click,
+   retry, and two tabs are the real mechanisms.
+
+Two answers I would want before running this suite anywhere but here: whether the
+~20s first paint is the dev build or the product, and whether stable test hooks
+are planned for the rate field and the status chips. The first decides whether the
+timeouts are protecting against a real regression or hiding one; the second
+decides how much of this suite survives the next restyle.

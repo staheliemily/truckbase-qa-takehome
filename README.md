@@ -24,8 +24,8 @@ five documents below.
 | [Test approach](docs/test-approach.html) — risk list, ranking rationale, scenarios chosen and skipped | Part 1 |
 | [Findings](docs/findings-report.html) — three findings with repro steps, impact, and screenshots | Part 2 |
 | [Release recommendation](docs/release-recommendation.html) — ship/hold call, conditions, what to test next | Part 4 |
-| [AI usage](docs/ai-usage.html) — tools used, what was changed or rejected | — |
-| [Additional observations](docs/additional-observations.html) — further notes from the automation, outside the three submitted findings | — |
+| [AI usage](docs/ai-usage.html) — tools used, what was changed or rejected | AI note |
+| [Additional observations](docs/additional-observations.html) — further notes from the automation, outside the three submitted findings | Supplementary |
 
 Every document is self-contained HTML: each opens in a browser with no build
 step, and the findings carry their own screenshots. Markdown sources are kept

@@ -251,6 +251,12 @@ footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
     <code>Invoice Created</code> while the invoices list shows <code>Created</code> for the same invoice. Both
     are reasonable in isolation; whether they are meant to be the same vocabulary is a product question, and
     it matters for risk 5.</li>
+    <li><strong>How often does a dispatcher backdate an order?</strong> Pickup and delivery dates were only
+    exercised in the future here. If backdating is routine &mdash; a load entered after it ran, which is
+    common in freight &mdash; then date validation means something different: rejecting a pickup date in the
+    past would break a normal workflow, while accepting a delivery dated before its pickup lets an invoice
+    bill for a load that could not have run (risk 9). The answer decides which of those two is the defect, and
+    it is not something testing alone can settle.</li>
     <li><strong>Is the third-party iframe on the invoice view intentional?</strong> The invoice view loads
     <code>voice.cohere.so</code>. On a screen showing customer billing data that should be a deliberate
     decision.</li>

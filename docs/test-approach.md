@@ -94,14 +94,21 @@ Raised by what exploration actually turned up, in the order I would ask them:
    list shows `Invoice Created` while the invoices list shows `Created` for the
    same invoice. Both are reasonable in isolation; whether they are meant to be
    the same vocabulary is a product question, and it matters for risk 5.
-4. **Is the third-party iframe on the invoice view intentional?** The invoice
+4. **How often does a dispatcher backdate an order?** Pickup and delivery dates
+   were only exercised in the future here. If backdating is routine — a load
+   entered after it ran, which is common in freight — then date validation means
+   something different: rejecting a pickup date in the past would break a normal
+   workflow, while accepting a delivery dated before its pickup lets an invoice
+   bill for a load that could not have run (risk 9). The answer decides which of
+   those two is the defect, and it is not something testing alone can settle.
+5. **Is the third-party iframe on the invoice view intentional?** The invoice
    view loads `voice.cohere.so`. On a screen showing customer billing data that
    should be a deliberate decision.
-5. **Is the observed latency a dev-build artifact?** Roughly 20 seconds to first
+6. **Is the observed latency a dev-build artifact?** Roughly 20 seconds to first
    interactive paint, with intermittent failures to render at all. If this is the
    environment rather than the product, the release risk is very different — and
    the test suite's timeouts should be retuned before it runs anywhere else.
-6. **Are stable test hooks planned?** The rate field, status chips, and the
+7. **Are stable test hooks planned?** The rate field, status chips, and the
    invoice Create button are reachable today only through generated class names
    and positional selectors. A `data-testid` on each would remove the most
    brittle parts of any automation written against this workflow.

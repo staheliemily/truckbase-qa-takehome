@@ -12,3 +12,4 @@ playwright/.cache/
 
 # Auth state produced by tests/auth.setup.ts
 playwright/.auth/
+

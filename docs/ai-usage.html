@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Usage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FCFCFB; --ink:#16191D; --soft:#5A636C;
+  --rule:#DDE0DC; --rule-2:#B8BEB7;
+  --crit:#9E2B20; --high:#B4661A; --med:#2B5578; --obs:#4A6B52;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,system-ui,sans-serif;
+  font-size:15.5px; line-height:1.6;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 26px 80px}
+
+.masthead{border-bottom:2.5px solid var(--ink);padding:34px 0 0}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--crit);margin:0 0 7px}
+h1{font-family:"Barlow Condensed",sans-serif;font-weight:700;text-transform:uppercase;
+  letter-spacing:.02em;font-size:clamp(36px,6.5vw,58px);line-height:.94;margin:0 0 6px;
+  text-wrap:balance}
+.subtitle{font-family:"Barlow Condensed",sans-serif;font-size:clamp(16px,2.4vw,21px);
+  text-transform:uppercase;letter-spacing:.07em;color:var(--soft);margin:0 0 22px}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--rule-2);border-left:1px solid var(--rule-2)}
+.meta div{border-right:1px solid var(--rule-2);border-bottom:1px solid var(--rule-2);padding:7px 11px 9px}
+.meta .lab{display:block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:2px}
+.meta .val{font-family:"Barlow Condensed",sans-serif;font-size:18px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.02em}
+@media(max-width:620px){.meta{grid-template-columns:repeat(2,1fr)}}
+
+.lede{margin:24px 0 0;max-width:68ch;color:var(--soft)}
+.lede strong{color:var(--ink)}
+
+section{margin-top:56px}
+h2{font-family:"Barlow Condensed",sans-serif;font-weight:700;
+  font-size:clamp(23px,3.6vw,31px);text-transform:uppercase;letter-spacing:.02em;
+  margin:0 0 18px;border-bottom:1.5px solid var(--ink);padding-bottom:8px;text-wrap:balance}
+p{margin:0 0 12px;max-width:70ch}
+strong{font-weight:600}
+em{font-style:italic}
+code{font-family:"IBM Plex Mono",monospace;font-size:.87em;
+  background:rgba(22,25,29,.06);padding:1.5px 5px;border-radius:2px}
+
+.uses{display:grid;gap:0;border-top:1px solid var(--rule-2)}
+.uses > div{border-bottom:1px solid var(--rule-2);padding:20px 0;
+  display:grid;grid-template-columns:150px 1fr;gap:0 22px;align-items:start}
+.tool{font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.03em;line-height:1.15}
+.tool .what{display:block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
+  letter-spacing:.12em;color:var(--soft);text-transform:uppercase;
+  font-weight:400;margin-top:6px;line-height:1.5}
+.outcome h4{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--soft);margin:0 0 7px;font-weight:500}
+.outcome p:last-child{margin-bottom:0}
+@media(max-width:620px){.uses > div{grid-template-columns:1fr;gap:12px}}
+
+.risk{border-bottom:1px solid var(--rule);padding:20px 0}
+.risk:last-child{border-bottom:none}
+.risk h3{font-family:"Barlow Condensed",sans-serif;font-size:21px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.03em;margin:0 0 8px}
+.risk p:last-child{margin-bottom:0}
+
+footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.05em;
+  color:var(--soft);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media print{ body{font-size:11pt} .risk,.uses > div{page-break-inside:avoid} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">Truckbase &middot; order creation &rarr; invoicing</p>
+  <h1>AI Usage</h1>
+  <p class="subtitle">Lead QA Engineer take-home</p>
+  <div class="meta">
+    <div><span class="lab">Tools</span><span class="val">Claude, Claude Code</span></div>
+    <div><span class="lab">Selectors</span><span class="val">Captured</span></div>
+    <div><span class="lab">Findings</span><span class="val">Written by hand</span></div>
+    <div><span class="lab">Kept output</span><span class="val">Run or reasoned</span></div>
+  </div>
+  <p class="lede">I used AI tools the way I do in normal QA work: for structuring, reviewing, and accelerating
+  research, while keeping the judgment calls and the actual testing my own.</p>
+</header>
+
+<section>
+  <h2>Where it was used</h2>
+  <div class="uses">
+    <div>
+      <div class="tool">Claude<span class="what">Structuring the risk list and pressure-testing my
+        ranking</span></div>
+      <div class="outcome">
+        <h4>Changed, rejected, or validated</h4>
+        <p>Reordered several risks and rewrote the entries in my own words. Rejected the suggestion to score
+        risks numerically &mdash; a 1&ndash;5 matrix on a two-hour exercise is process theater, not
+        judgment.</p>
+      </div>
+    </div>
+    <div>
+      <div class="tool">Claude<span class="what">Background research on TMS and freight-billing failure modes
+        before starting</span></div>
+      <div class="outcome">
+        <h4>Changed, rejected, or validated</h4>
+        <p>Treated as hypotheses, not findings. Discarded the accessorial and fuel-surcharge material as
+        irrelevant once I noted the brief specifies a flat rate, which removes calculation from scope.</p>
+      </div>
+    </div>
+    <div>
+      <div class="tool">Claude Code<span class="what">Scaffolding the Playwright project and doc
+        structure</span></div>
+      <div class="outcome">
+        <h4>Changed, rejected, or validated</h4>
+        <p>Kept the config, the env wiring, and the cross-view consistency helper. Replaced the auth setup
+        entirely &mdash; it was a stub with guessed selectors, and every one was wrong against the real app.</p>
+        <p>Found a bug in the consistency helper while wiring it up: two blank views normalised to the same
+        sentinel and compared as <em>consistent</em>, so a value that never propagated would have passed.</p>
+      </div>
+    </div>
+    <div>
+      <div class="tool">Claude Code<span class="what">Converting a <code>playwright codegen</code> recording
+        into page objects, helpers, and two specs</span></div>
+      <div class="outcome">
+        <h4>Changed, rejected, or validated</h4>
+        <p>Validated every selector against the running app rather than trusting the recording. Rejected its
+        implied click order for invoicing &mdash; the charge type has to be set <em>inside</em> the dialog
+        before saving, not after, so following the recording produced a test that never created an
+        invoice.</p>
+        <p>Caught an AI-authored regex bug (<code>\s</code> inside a template literal collapses to a literal
+        <code>s</code>) that silently broke every grid lookup.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Risks I considered</h2>
+
+  <div class="risk">
+    <h3>Hallucinated selectors</h3>
+    <p>I deliberately did not let AI write test code before I had seen the DOM. I captured real selectors with
+    <code>playwright codegen</code> first, then used AI to refactor them into role-based locators. Reversing
+    that order produces confident, wrong code that costs more time to debug than to write by hand.</p>
+  </div>
+
+  <div class="risk">
+    <h3>Generic-sounding findings</h3>
+    <p>I wrote the findings myself rather than generating them from notes. AI-written defect reports read
+    fluently but lose the specific detail that makes a bug reproducible, and the reasoning needs to be mine
+    since I have to defend it.</p>
+  </div>
+
+  <div class="risk">
+    <h3>Plausible-but-wrong domain assumptions</h3>
+    <p>Background research on trucking billing produced confident claims I could not verify against this
+    build. Anything from that research is marked as an assumption to verify rather than stated as fact.</p>
+  </div>
+
+  <div class="risk">
+    <h3>Verification burden</h3>
+    <p>Every AI suggestion I kept, I either ran or reasoned through myself. The value was in speed of
+    structuring and in catching things I would have missed, not in output I accepted unexamined.</p>
+  </div>
+</section>
+
+<footer>
+  <span>AI usage note</span>
+  <span>Judgment calls and testing kept my own</span>
+</footer>
+
+</div>
+</body>
+</html>

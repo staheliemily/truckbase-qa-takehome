@@ -7,8 +7,7 @@ These are further observations noted while building the automation. They are kep
 here because they are real and reproducible, not because they compete with the
 three above — most sit outside the billing path the brief prioritises.
 
-**Environment:** temporary test environment · Chromium ·
-account `owner@truckbase.test` · August 2026
+**Environment:** temporary test environment · Chromium · August 2026
 
 **Headline:** the money is right. An order's rate is preserved exactly through
 invoicing, verified end to end. Every finding below is about the workflow

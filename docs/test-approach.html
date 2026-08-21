@@ -11,7 +11,7 @@
 :root{
   --paper:#FCFCFB; --ink:#16191D; --soft:#5A636C;
   --rule:#DDE0DC; --rule-2:#B8BEB7;
-  --crit:#9E2B20; --high:#B4661A; --med:#2B5578; --obs:#4A6B52;
+  --crit:#9E2B20; --high:#A85C14; --med:#2B5578; --obs:#4A6B52;
 }
 *{box-sizing:border-box}
 body{
@@ -103,6 +103,11 @@ footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
   color:var(--soft);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 @media print{ body{font-size:11pt} section{page-break-inside:avoid} }
+
+footer a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--rule-2);
+  padding-bottom:1px}
+footer a:hover{color:var(--ink);border-bottom-color:var(--ink)}
+footer a:focus-visible{outline:2px solid var(--crit);outline-offset:3px;border-bottom-color:transparent}
 </style>
 </head>
 <body>
@@ -272,6 +277,7 @@ footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
 </section>
 
 <footer>
+  <span><a href="index.html">&larr; All documents</a></span>
   <span>Part 1 &middot; Test approach</span>
   <span>Depth over breadth</span>
 </footer>

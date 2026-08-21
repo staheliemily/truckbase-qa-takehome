@@ -11,7 +11,7 @@
 :root{
   --paper:#FCFCFB; --ink:#16191D; --soft:#5A636C;
   --rule:#DDE0DC; --rule-2:#B8BEB7;
-  --crit:#9E2B20; --high:#B4661A; --med:#2B5578; --obs:#4A6B52;
+  --crit:#9E2B20; --high:#A85C14; --med:#2B5578; --obs:#4A6B52;
 }
 *{box-sizing:border-box}
 body{
@@ -59,7 +59,7 @@ code{font-family:"IBM Plex Mono",monospace;font-size:.87em;
 .tool .what{display:block;font-family:"IBM Plex Mono",monospace;font-size:9.5px;
   letter-spacing:.12em;color:var(--soft);text-transform:uppercase;
   font-weight:400;margin-top:6px;line-height:1.5}
-.outcome h4{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.15em;
+.outcome h3{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.15em;
   text-transform:uppercase;color:var(--soft);margin:0 0 7px;font-weight:500}
 .outcome p:last-child{margin-bottom:0}
 @media(max-width:620px){.uses > div{grid-template-columns:1fr;gap:12px}}
@@ -75,6 +75,11 @@ footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
   color:var(--soft);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 @media print{ body{font-size:11pt} .risk,.uses > div{page-break-inside:avoid} }
+
+footer a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--rule-2);
+  padding-bottom:1px}
+footer a:hover{color:var(--ink);border-bottom-color:var(--ink)}
+footer a:focus-visible{outline:2px solid var(--crit);outline-offset:3px;border-bottom-color:transparent}
 </style>
 </head>
 <body>
@@ -101,7 +106,7 @@ footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
       <div class="tool">Claude<span class="what">Structuring the risk list and pressure-testing my
         ranking</span></div>
       <div class="outcome">
-        <h4>Changed, rejected, or validated</h4>
+        <h3>Changed, rejected, or validated</h3>
         <p>Reordered several risks and rewrote the entries in my own words. Rejected the suggestion to score
         risks numerically &mdash; a 1&ndash;5 matrix on a two-hour exercise is process theater, not
         judgment.</p>
@@ -111,7 +116,7 @@ footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
       <div class="tool">Claude<span class="what">Background research on TMS and freight-billing failure modes
         before starting</span></div>
       <div class="outcome">
-        <h4>Changed, rejected, or validated</h4>
+        <h3>Changed, rejected, or validated</h3>
         <p>Treated as hypotheses, not findings. Discarded the accessorial and fuel-surcharge material as
         irrelevant once I noted the brief specifies a flat rate, which removes calculation from scope.</p>
       </div>
@@ -120,7 +125,7 @@ footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
       <div class="tool">Claude Code<span class="what">Scaffolding the Playwright project and doc
         structure</span></div>
       <div class="outcome">
-        <h4>Changed, rejected, or validated</h4>
+        <h3>Changed, rejected, or validated</h3>
         <p>Kept the config, the env wiring, and the cross-view consistency helper. Replaced the auth setup
         entirely &mdash; it was a stub with guessed selectors, and every one was wrong against the real app.</p>
         <p>Found a bug in the consistency helper while wiring it up: two blank views normalised to the same
@@ -131,7 +136,7 @@ footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
       <div class="tool">Claude Code<span class="what">Converting a <code>playwright codegen</code> recording
         into page objects, helpers, and two specs</span></div>
       <div class="outcome">
-        <h4>Changed, rejected, or validated</h4>
+        <h3>Changed, rejected, or validated</h3>
         <p>Validated every selector against the running app rather than trusting the recording. Rejected its
         implied click order for invoicing &mdash; the charge type has to be set <em>inside</em> the dialog
         before saving, not after, so following the recording produced a test that never created an
@@ -178,6 +183,7 @@ footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
 </section>
 
 <footer>
+  <span><a href="index.html">&larr; All documents</a></span>
   <span>AI usage note</span>
   <span>Judgment calls and testing kept my own</span>
 </footer>

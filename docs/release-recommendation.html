@@ -11,7 +11,7 @@
 :root{
   --paper:#FCFCFB; --ink:#16191D; --soft:#5A636C;
   --rule:#DDE0DC; --rule-2:#B8BEB7;
-  --crit:#9E2B20; --high:#B4661A; --med:#2B5578; --obs:#4A6B52;
+  --crit:#9E2B20; --high:#A85C14; --med:#2B5578; --obs:#4A6B52;
 }
 *{box-sizing:border-box}
 body{
@@ -76,9 +76,9 @@ ol.priority li::before{content:counter(p,decimal-leading-zero);position:absolute
 
 .split{display:grid;gap:0;border-top:1px solid var(--rule-2)}
 .split > div{border-bottom:1px solid var(--rule-2);padding:16px 0}
-.split h4{font-family:"Barlow Condensed",sans-serif;font-size:19px;font-weight:600;
+.split h3{font-family:"Barlow Condensed",sans-serif;font-size:19px;font-weight:600;
   text-transform:uppercase;letter-spacing:.03em;margin:0 0 6px}
-.split h4 .tag{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.13em;
+.split h3 .tag{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.13em;
   padding:3px 8px;color:#fff;margin-right:10px;vertical-align:2px}
 .tag.auto{background:var(--obs)} .tag.man{background:var(--med)} .tag.never{background:var(--crit)}
 .split p:last-child{margin-bottom:0}
@@ -94,6 +94,11 @@ footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
   color:var(--soft);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 @media print{ body{font-size:11pt} section{page-break-inside:avoid} }
+
+footer a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--rule-2);
+  padding-bottom:1px}
+footer a:hover{color:var(--ink);border-bottom-color:var(--ink)}
+footer a:focus-visible{outline:2px solid var(--crit);outline-offset:3px;border-bottom-color:transparent}
 </style>
 </head>
 <body>
@@ -174,14 +179,14 @@ footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
   <h2>Manual vs automated split</h2>
   <div class="split">
     <div>
-      <h4><span class="tag auto">Automated</span></h4>
+      <h3><span class="tag auto">Automated</span></h3>
       <p>Anything with an exact expected value that will be checked repeatedly: the rate surviving order
       &rarr; invoice, invoice counts, status propagation, cross-view consistency, and the two regression tests
       above. These are assertions a machine makes better than a person, and their value compounds because they
       run on every change.</p>
     </div>
     <div>
-      <h4><span class="tag man">Manual</span></h4>
+      <h3><span class="tag man">Manual</span></h3>
       <p>Judgement about whether the workflow makes sense. The silent Save is a good example: automation
       confirmed the click does nothing, but noticing that a user is stranded with no feedback is an
       exploratory finding. Also manual: the PDF&rsquo;s visual correctness, one-off environment checks, and
@@ -189,7 +194,7 @@ footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
       what to assert.</p>
     </div>
     <div>
-      <h4><span class="tag never">Not automated</span></h4>
+      <h3><span class="tag never">Not automated</span></h3>
       <p>Invoice sending, deliberately. The suite asserts the dialog&rsquo;s send flag is off before saving,
       so no test can email a real customer. Delivery should be verified against a mail sink, not by
       sending.</p>
@@ -251,6 +256,7 @@ footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
 </section>
 
 <footer>
+  <span><a href="index.html">&larr; All documents</a></span>
   <span>Part 4 &middot; Release recommendation</span>
   <span>Recommendation: hold</span>
 </footer>

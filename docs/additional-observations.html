@@ -11,7 +11,7 @@
 :root{
   --paper:#FCFCFB; --ink:#16191D; --soft:#5A636C;
   --rule:#DDE0DC; --rule-2:#B8BEB7;
-  --crit:#9E2B20; --high:#B4661A; --med:#2B5578; --obs:#4A6B52;
+  --crit:#9E2B20; --high:#A85C14; --med:#2B5578; --obs:#4A6B52;
 }
 *{box-sizing:border-box}
 body{
@@ -90,7 +90,7 @@ pre code{background:none;padding:0;font-size:inherit;color:inherit}
 
 .obs-item{border-bottom:1px solid var(--rule);padding:15px 0}
 .obs-item:last-child{border-bottom:none}
-.obs-item h4{font-family:"Barlow Condensed",sans-serif;font-size:19px;font-weight:600;
+.obs-item h3{font-family:"Barlow Condensed",sans-serif;font-size:19px;font-weight:600;
   text-transform:uppercase;letter-spacing:.03em;margin:0 0 5px}
 
 footer{margin-top:60px;padding-top:16px;border-top:2.5px solid var(--ink);
@@ -98,6 +98,11 @@ footer{margin-top:60px;padding-top:16px;border-top:2.5px solid var(--ink);
   color:var(--soft);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 @media print{ body{font-size:11pt} .finding{page-break-inside:avoid} }
+
+footer a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--rule-2);
+  padding-bottom:1px}
+footer a:hover{color:var(--ink);border-bottom-color:var(--ink)}
+footer a:focus-visible{outline:2px solid var(--crit);outline-offset:3px;border-bottom-color:transparent}
 </style>
 </head>
 <body>
@@ -326,26 +331,27 @@ Email field interactive   ~21.0s</code></pre>
   <h2 class="section">Not tested</h2>
   <p>Stated so the coverage is not overread.</p>
   <div class="obs-item">
-    <h4>Invoice sending</h4>
+    <h3>Invoice sending</h3>
     <p>Deliberately excluded. The dialog&rsquo;s <code>sendInvoice</code> field defaults to false and the
     suite asserts it is still false before saving, so no test can email a customer.</p>
   </div>
   <div class="obs-item">
-    <h4>Invoice download</h4>
+    <h3>Invoice download</h3>
     <p>Pending the findings report&rsquo;s finding 02 &mdash; the download failure is the same defect.</p>
   </div>
   <div class="obs-item">
-    <h4>State changes beyond invoice creation</h4>
+    <h3>State changes beyond invoice creation</h3>
     <p><em>Mark as paid</em> and anything else that alters financial state.</p>
   </div>
   <div class="obs-item">
-    <h4>Breadth</h4>
+    <h3>Breadth</h3>
     <p>Multi-user, permissions, and any browser other than Chromium. Orders with multiple charge lines,
     non-flat rates, or currencies other than USD.</p>
   </div>
 </section>
 
 <footer>
+  <span><a href="index.html">&larr; All documents</a></span>
   <span>Supplementary observations</span>
   <span>Not counted as Part 2 findings</span>
 </footer>

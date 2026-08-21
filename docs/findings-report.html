@@ -11,7 +11,7 @@
 :root{
   --paper:#FCFCFB; --ink:#16191D; --soft:#5A636C;
   --rule:#DDE0DC; --rule-2:#B8BEB7;
-  --crit:#9E2B20; --high:#B4661A; --med:#2B5578; --obs:#4A6B52;
+  --crit:#9E2B20; --high:#A85C14; --med:#2B5578; --obs:#4A6B52;
 }
 *{box-sizing:border-box}
 body{
@@ -98,7 +98,7 @@ figcaption{font-size:13px;line-height:1.5;color:var(--soft);margin-top:8px;max-w
 /* observations */
 .obs-item{border-bottom:1px solid var(--rule);padding:16px 0}
 .obs-item:last-child{border-bottom:none}
-.obs-item h4{font-family:"Barlow Condensed",sans-serif;font-size:19px;font-weight:600;
+.obs-item h3{font-family:"Barlow Condensed",sans-serif;font-size:19px;font-weight:600;
   text-transform:uppercase;letter-spacing:.03em;margin:0 0 5px}
 
 footer{margin-top:64px;padding-top:16px;border-top:2.5px solid var(--ink);
@@ -129,6 +129,11 @@ h2.section{font-family:"Barlow Condensed",sans-serif;font-weight:700;
 .verified li:last-child{border-bottom:none}
 .verified li::before{content:"¹3";position:absolute;left:0;top:10px;
   color:var(--obs);font-family:"IBM Plex Mono",monospace;font-size:13px}
+
+footer a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--rule-2);
+  padding-bottom:1px}
+footer a:hover{color:var(--ink);border-bottom-color:var(--ink)}
+footer a:focus-visible{outline:2px solid var(--crit);outline-offset:3px;border-bottom-color:transparent}
 </style>
 </head>
 <body>
@@ -361,7 +366,7 @@ h2.section{font-family:"Barlow Condensed",sans-serif;font-weight:700;
   </div>
 
   <div class="obs-item">
-    <h4>Document upload is non-functional application-wide</h4>
+    <h3>Document upload is non-functional application-wide</h3>
     <p>The Upload dialog reports &ldquo;Document types are still loading. Please try again in a moment,&rdquo;
     and the Upload button remains disabled. Not investigated as a primary area, since attachments fall outside
     the assigned scope &mdash; but it directly affects the billing outcome. Invoice packets typically require a
@@ -374,7 +379,7 @@ h2.section{font-family:"Barlow Condensed",sans-serif;font-weight:700;
   </div>
 
   <div class="obs-item">
-    <h4>Order margin displays inconsistently across views</h4>
+    <h3>Order margin displays inconsistently across views</h3>
     <p>For Order #14, the margin showed <code>100%</code> on the create form, <code>0%</code> in the order
     overlay, and <code>-</code> in the orders list &mdash; the same underlying data rendered three ways.</p>
     <figure>
@@ -384,7 +389,7 @@ h2.section{font-family:"Barlow Condensed",sans-serif;font-weight:700;
   </div>
 
   <div class="obs-item">
-    <h4>Investigated and ruled out: apparent disagreement between the two map providers</h4>
+    <h3>Investigated and ruled out: apparent disagreement between the two map providers</h3>
     <p>The route map plotted a stop in Austin, Texas, while the stop's hyperlink opened Google Maps at a
     location in North Charleston, South Carolina &mdash; roughly 1,100 miles apart. On investigation this
     traced to the underlying location record, which is stored as &ldquo;HQ, 1 Seed Street&rdquo; with no city
@@ -404,7 +409,7 @@ h2.section{font-family:"Barlow Condensed",sans-serif;font-weight:700;
   </div>
 
   <div class="obs-item">
-    <h4>Stop type can be left blank when editing</h4>
+    <h3>Stop type can be left blank when editing</h3>
     <p>Editing an order from the orders list showed Stop 2 with an empty Type dropdown &mdash; neither Pickup
     nor Delivery selected. Not investigated further for time reasons, but a stop with no type is a data
     integrity concern worth confirming.</p>
@@ -415,7 +420,7 @@ h2.section{font-family:"Barlow Condensed",sans-serif;font-weight:700;
   </div>
 
   <div class="obs-item">
-    <h4>An invoice send hung indefinitely</h4>
+    <h3>An invoice send hung indefinitely</h3>
     <p>One send attempt produced a persistent spinner with no error and no completion. The environment was
     slow throughout, so I could not separate application behaviour from environment behaviour, and I am not
     reporting it as a defect. It may share a cause with Finding 2.</p>
@@ -426,21 +431,21 @@ h2.section{font-family:"Barlow Condensed",sans-serif;font-weight:700;
   </div>
 
   <div class="obs-item">
-    <h4>Expired MUI X Pro license renders in the application UI</h4>
+    <h3>Expired MUI X Pro license renders in the application UI</h3>
     <p>The watermark &ldquo;MUI X Expired license key&rdquo; appears in the Expenses panel and elsewhere,
     visible to users rather than only in the console. A licensing matter rather than a defect, but not
     appropriate for a release candidate. Visible in several figures above.</p>
   </div>
 
   <div class="obs-item">
-    <h4>Console errors during invoice creation</h4>
+    <h3>Console errors during invoice creation</h3>
     <p>A DOM nesting violation is logged from <code>PreviewInvoice.tsx</code> and <code>CreateInvoice.tsx</code>,
     alongside React key warnings in the location selector. Not user-visible, but the invoice path is not
     error-free, and the noise made the Finding 2 network error easy to miss.</p>
   </div>
 
   <div class="obs-item">
-    <h4>Environment note</h4>
+    <h3>Environment note</h3>
     <p>The application is served as a Vite development build &mdash; unminified sources and
     <code>node_modules/.vite/deps</code> paths are visible in stack traces. Some behaviour, particularly error
     handling and timing-sensitive interactions, may differ in a production build. The environment was also
@@ -450,6 +455,7 @@ h2.section{font-family:"Barlow Condensed",sans-serif;font-weight:700;
 
 
 <footer>
+  <span><a href="index.html">&larr; All documents</a></span>
   <span>Part 2 &middot; Exploratory findings</span>
   <span>Depth over breadth</span>
 </footer>
